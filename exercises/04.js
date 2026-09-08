@@ -13,13 +13,19 @@ const movie = {
 };
 
 // 1. Destructure title, year, and rating in one line.
+const { title, year, rating } = movie;
 
 // 2. Destructure director.name using nested destructuring.
+const { director: { name } } = movie;
 
 // 3. Destructure title, and rename it to movieTitle.
-
+const { title: movieTitle } = movie;
 // 4. Destructure a field that does not exist: tagline.
+const { tagline = "No tagline available" } = movie;
 //    Give it a default value of "No tagline available".
+function printMovie({ title, year }) {
+  console.log(title, year);
+}
 
 // 5. Rewrite this function using destructuring in the parameter list:
 function printMovie(movie) {
