@@ -13,8 +13,10 @@ const label =`Movie: ${title} (${year})`;
 const description = `Title: ${title}
 Year: ${year}
 Rating: ${rating}/10`;
-// 3. Expression inside the string:st summary = `Rating is ${rating >= 8.5 ? "excellent" : "good"}`;
+// 3. Expression inside the string:st summary
+const summary = `Rating is ${rating >= 8.5 ? "excellent" : "good"}`;
 
 console.log(label);       // "Movie: Inception (2010)"
 console.log(description); // Title: Inception \n Year: 2010 \n Rating: 8.8/10
 console.log(summary);     // "Rating is excellent"
+
