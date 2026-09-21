@@ -1,29 +1,20 @@
-import { useEffect, useState } from "react";
-import SearchBar from "./components/SearchBar";
-import MovieList from "./components/MovieList";
-import { SAMPLE_MOVIES } from "./data/sampleMovies";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
-  const [query, setQuery] = useState("");
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-  }, [theme]);
-
-  const filtered = SAMPLE_MOVIES.filter((m) =>
-    m.title.toLowerCase().includes(query.trim().toLowerCase()),
-  );
-
   return (
-    <div className="app">
-      <h1>CineGrid</h1>
-      <SearchBar
-        query={query}
-        onChange={setQuery}
-        onToggleTheme={() => setTheme(theme === "dark" ? "light" : "dark")}
-      />
-      <MovieList movies={filtered} />
-    </div>
+    <BrowserRouter>
+      <Header />
+      <main className="app">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }

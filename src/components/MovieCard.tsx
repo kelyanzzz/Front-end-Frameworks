@@ -5,13 +5,22 @@ import { getGenreNames } from "../data/genres";
 
 interface MovieCardProps {
   movie: Movie;
+  onSelect?: (movie: Movie) => void;
 }
 
-export default function MovieCard({ movie }: MovieCardProps) {
+export default function MovieCard({ movie, onSelect }: MovieCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <article className="movie-card" tabIndex={0} aria-label={movie.title}>
+    <article
+      className="movie-card"
+      tabIndex={0}
+      aria-label={movie.title}
+      onClick={() => onSelect?.(movie)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") onSelect?.(movie);
+      }}
+    >
       <div className="poster-wrapper">
         <img
           src={getPosterUrl(movie.poster_path)}
@@ -30,7 +39,10 @@ export default function MovieCard({ movie }: MovieCardProps) {
             <button
               className={`favorite-btn ${isFavorite ? "active" : ""}`}
               aria-label={isFavorite ? "Remove from favourites" : "Add to favourites"}
-              onClick={() => setIsFavorite(!isFavorite)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFavorite(!isFavorite);
+              }}
             >
               <svg
                 width="16"
