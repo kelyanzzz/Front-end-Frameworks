@@ -19,7 +19,7 @@ export default function App() {
     <div className="app">
       <h1>CineGrid</h1>
       <SearchBar
-        value={query}
+        query={query}
         onChange={setQuery}
         onToggleTheme={() => setTheme(theme === "dark" ? "light" : "dark")}
       />

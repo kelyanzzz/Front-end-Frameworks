@@ -1,17 +1,17 @@
 interface SearchBarProps {
-  value: string;
+  query: string;
   onChange: (value: string) => void;
   onToggleTheme?: () => void;
 }
 
-export default function SearchBar({ value, onChange, onToggleTheme }: SearchBarProps) {
+export default function SearchBar({ query, onChange, onToggleTheme }: SearchBarProps) {
   return (
     <div className="search-bar">
       <input
         type="text"
         className="search-input"
         placeholder="Search movies..."
-        value={value}
+        value={query}
         onChange={(e) => onChange(e.target.value)}
       />
       <button className="icon-btn" aria-label="Show favourites">&hearts;</button>
