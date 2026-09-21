@@ -3,18 +3,21 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import { AppProvider } from "./context/AppContext";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <main className="app">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <AppProvider>
+      <BrowserRouter>
+        <Header />
+        <main className="app">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </AppProvider>
   );
 }

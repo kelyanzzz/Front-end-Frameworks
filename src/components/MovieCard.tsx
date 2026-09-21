@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Movie } from "../types";
 import { getPosterUrl } from "../data/sampleMovies";
 import { getGenreNames } from "../data/genres";
+import { useOptionalAppContext } from "../context/AppContext";
 
 interface MovieCardProps {
   movie: Movie;
@@ -9,7 +10,14 @@ interface MovieCardProps {
 }
 
 export default function MovieCard({ movie, onSelect }: MovieCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const ctx = useOptionalAppContext();
+  const [localFavorite, setLocalFavorite] = useState(false);
+
+  const isFavorite = ctx ? ctx.isFavorite(movie.id) : localFavorite;
+  const toggleFavorite = () => {
+    if (ctx) ctx.toggleFavorite(movie);
+    else setLocalFavorite((v) => !v);
+  };
 
   return (
     <article
@@ -41,7 +49,7 @@ export default function MovieCard({ movie, onSelect }: MovieCardProps) {
               aria-label={isFavorite ? "Remove from favourites" : "Add to favourites"}
               onClick={(e) => {
                 e.stopPropagation();
-                setIsFavorite(!isFavorite);
+                toggleFavorite();
               }}
             >
               <svg

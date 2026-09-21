@@ -3,14 +3,23 @@ import SearchBar from "../components/SearchBar";
 import MovieList from "../components/MovieList";
 import MovieModal from "../components/MovieModal";
 import { useMovies } from "../hooks/useMovies";
-import { useTheme } from "../hooks/useTheme";
+import { useOptionalAppContext } from "../context/AppContext";
 import type { Movie } from "../types";
 
 export default function HomePage() {
   const { movies, loading, error } = useMovies();
-  const { toggleTheme } = useTheme();
+  const ctx = useOptionalAppContext();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<Movie | null>(null);
+
+  const toggleTheme = () => {
+    if (ctx) {
+      ctx.toggleTheme();
+    } else {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
+    }
+  };
 
   const filtered = movies.filter((m) =>
     m.title.toLowerCase().includes(query.trim().toLowerCase()),
