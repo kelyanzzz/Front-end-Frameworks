@@ -1,0 +1,19 @@
+ package-lock.json             | 1367 [32m+++++++++++++++[m[31m--------------------------[m
+ package.json                  |    2 [32m+[m[31m-[m
+ src/App.tsx                   |   30 [32m+[m[31m-[m
+ src/components/Header.tsx     |   13 [32m+[m
+ src/components/MovieCard.tsx  |   85 [32m+++[m
+ src/components/MovieList.tsx  |   20 [32m+[m
+ src/components/MovieModal.tsx |   44 [32m++[m
+ src/components/SearchBar.tsx  |   21 [32m+[m
+ src/context/AppContext.tsx    |   97 [32m+++[m
+ src/hooks/useMovies.ts        |   29 [32m+[m
+ src/hooks/useTheme.ts         |   18 [32m+[m
+ src/index.css                 |   20 [32m+[m
+ src/main.tsx                  |   12 [32m+[m[31m-[m
+ src/pages/AboutPage.tsx       |   14 [32m+[m
+ src/pages/HomePage.tsx        |   42 [32m++[m
+ src/pages/NotFoundPage.tsx    |   11 [32m+[m
+ src/services/movieService.ts  |   18 [32m+[m
+ src/types.ts                  |   16 [32m+[m
+ 18 files changed, 966 insertions(+), 893 deletions(-)
